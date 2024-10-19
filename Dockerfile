@@ -7,9 +7,10 @@ WORKDIR /app
 # Copiar los archivos necesarios al contenedor
 COPY app.py /app
 COPY spam_classifier_model.keras /app
+COPY requirements.txt /app
 
-# Instalar las dependencias
-RUN pip install flask tensorflow nltk
+# Instalar las dependencias usando requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Descargar los datos de NLTK necesarios
 RUN python -c "import nltk; nltk.download('stopwords')"
