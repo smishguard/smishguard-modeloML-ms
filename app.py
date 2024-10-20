@@ -74,7 +74,7 @@ def predict():
 
         # Determinar si es spam o no
         logging.info(f"Predicción bruta: {prediction}")
-        result = "spam" if prediction > 0.01 else "not spam"
+        result = "spam" if prediction > 0.02 else "not spam"
         
         return jsonify({'prediction': result})
     except Exception as e:
