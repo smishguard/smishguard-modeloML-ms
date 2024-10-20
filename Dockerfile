@@ -10,7 +10,7 @@ COPY spam_classifier_model.keras /app
 
 # Instalar las dependencias
 RUN pip install flask tensorflow nltk
-RUN pip intall deep_translator
+RUN pip install deep_translator
 
 # Descargar los datos de NLTK necesarios
 RUN python -c "import nltk; nltk.download('stopwords')"
