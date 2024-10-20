@@ -18,10 +18,11 @@ logging.basicConfig(level=logging.INFO)
 
 # Cargar el modelo
 try:
-    model = tf.keras.models.load_model('spam_classifier_model.keras')
+    model = tf.keras.models.load_model('/app/spam_classifier_model.keras')
     logging.info("Modelo cargado correctamente")
 except Exception as e:
     logging.error(f"Error al cargar el modelo: {e}")
+    model = None
 
 # Definir parámetros utilizados en el preprocesamiento
 vocab_size = 10000
@@ -43,34 +44,46 @@ def preprocess_message(message):
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    # Obtener el texto del POST
-    data = request.get_json(force=True)
-    text = data['text']
-
-    # Traducir el texto al inglés
     try:
-        translated_text = GoogleTranslator(source='auto', target='en').translate(text)
-        logging.info(f"Texto original: {text}")
-        logging.info(f"Texto traducido: {translated_text}")
+        # Verificar si el modelo se cargó correctamente
+        if model is None:
+            return jsonify({'error': 'El modelo no está disponible'}), 500
+
+        # Obtener el texto del POST
+        data = request.get_json(force=True)
+        text = data.get('text', '')
+
+        # Validar que el texto no esté vacío
+        if not text:
+            return jsonify({'error': 'El texto proporcionado está vacío'}), 400
+
+        # Traducir el texto al inglés
+        try:
+            translated_text = GoogleTranslator(source='auto', target='en').translate(text)
+            logging.info(f"Texto original: {text}")
+            logging.info(f"Texto traducido: {translated_text}")
+        except Exception as e:
+            logging.error(f"Error al traducir el texto: {e}")
+            return jsonify({'error': 'Error al traducir el texto', 'details': str(e)}), 500
+
+        # Preprocesar el texto traducido
+        processed_text = preprocess_message(translated_text)
+
+        # Realizar la predicción
+        prediction = model.predict(processed_text)
+
+        # Determinar si es spam o no
+        logging.info(f"Predicción bruta: {prediction}")
+        result = "spam" if prediction > 0.01 else "not spam"
+        
+        return jsonify({'prediction': result})
     except Exception as e:
-        logging.error(f"Error al traducir el texto: {e}")
-        return jsonify({'error': 'Error al traducir el texto', 'details': str(e)}), 500
+        logging.error(f"Error durante la predicción: {e}")
+        return jsonify({'error': 'Error en el servidor', 'details': str(e)}), 500
 
-    # Preprocesar el texto traducido
-    processed_text = preprocess_message(translated_text)
-
-    # Realizar la predicción
-    prediction = model.predict(processed_text)
-
-    # Determinar si es spam o no
-    logging.info(f"Predicción bruta: {prediction}")
-    result = "spam" if prediction > 0.01 else "not spam"
-    
-    return jsonify({'prediction': result})
-
-@app.route("/ping")
-def ping():
-    return jsonify({"message": "pong"})
+@app.route("/")
+def home():
+    return jsonify({"message": "Welcome to the Spam Detection Service!"})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
