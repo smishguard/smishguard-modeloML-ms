@@ -18,7 +18,7 @@ logging.basicConfig(level=logging.INFO)
 
 # Cargar el modelo
 try:
-    model = tf.keras.models.load_model('/app/spam_classifier_model.keras')
+    model = tf.keras.models.load_model('spam_classifier_model.keras')
     logging.info("Modelo cargado correctamente")
 except Exception as e:
     logging.error(f"Error al cargar el modelo: {e}")
