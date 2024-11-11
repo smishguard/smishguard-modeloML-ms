@@ -4,7 +4,7 @@ from tqdm import tqdm
 
 def load_data(file_path):
     # Cargar solo las primeras 200 filas del archivo CSV
-    df = pd.read_csv(file_path, encoding='ISO-8859-1', nrows=1000)
+    df = pd.read_csv(file_path, encoding='ISO-8859-1', nrows=200)
     # Seleccionar las columnas 'LABEL' y 'TEXT' para la clase y el mensaje
     df = df[['LABEL', 'TEXT']]
     df.columns = ['class', 'text']  # Renombrar las columnas para simplificar
@@ -37,6 +37,6 @@ def evaluate_model(data):
     print(f"\nPrecisión del modelo: {accuracy:.2f}%")
 
 # Ruta del archivo CSV
-file_path = "C:/Users/ivana/Desktop/Microservicios Tesis/smishguard-modeloML-ms/Dataset_5971.csv"  # Cambia la ruta según sea necesario
+file_path = "Dataset_5971.csv"  # Cambia la ruta según sea necesario
 data = load_data(file_path)
 evaluate_model(data)
