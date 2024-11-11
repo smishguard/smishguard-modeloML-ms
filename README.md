@@ -84,11 +84,11 @@ Si el texto no está incluido o el modelo no está disponible, se devuelve un er
 ### Pruebas Unitarias
 Se realizaron pruebas unitarias para verificar el funcionamiento de los endpoints y la lógica del modelo.
 
-![Resultado de Pruebas Unitarias](Test/Resultado_pruebas_unitarias.jpg)
+![Resultado de Pruebas Unitarias](Test/Resultado_pruebas_unitarias_ML.jpg)
 
 ### Pruebas de la API
 Se llevaron a cabo pruebas de la API para confirmar que los endpoints responden correctamente y en el formato esperado.
-![Resultado de Pruebas API](Test/Resultado_pruebas_api_ML.jpg)
+![Resultado de Pruebas API](Test/Resultado_prueba_api_ML.jpg)
 
 ### Pruebas de Carga
 Se realizaron pruebas de carga utilizando Locust para simular múltiples usuarios concurrentes accediendo al endpoint `/predict`. Los resultados mostraron que el servicio puede manejar la carga esperada de manera eficiente.
