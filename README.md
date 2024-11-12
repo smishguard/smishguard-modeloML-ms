@@ -117,6 +117,9 @@ def evaluate_model(data):
 ### Resultado de la evaluación
 El modelo logró una precisión del 80% en la detección de mensajes de spam y no spam.
 
+## Despliegue en Render
+Este servicio está desplegado en Render. Al realizar una solicitud a cualquiera de los endpoints documentados, asegúrate de usar la URL de despliegue proporcionada por Render.
 
+La API está disponible en: https://smishguard-modeloml-ms.onrender.com.
 ## Licencia
 Este proyecto está licenciado bajo la MIT License.
