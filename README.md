@@ -92,8 +92,8 @@ Se llevaron a cabo pruebas de la API para confirmar que los endpoints responden 
 
 ### Pruebas de Carga
 Se realizaron pruebas de carga utilizando Locust para simular múltiples usuarios concurrentes accediendo al endpoint `/predict`. Los resultados mostraron que el servicio puede manejar la carga esperada de manera eficiente.
-![Resultado de Pruebas de Carga](Test/Carga1.jpg)
-![Resultado de Pruebas de Carga](Test/Carga2.jpg)
+![Resultado de Pruebas de Carga](Test/Carga1.png)
+![Resultado de Pruebas de Carga](Test/Carga2.png)
 
 ## Evaluación del Modelo
 Se utilizó un conjunto de datos para evaluar la precisión del modelo. El script de evaluación carga los datos y envía cada mensaje al servicio para obtener la predicción, calculando luego la precisión general.
