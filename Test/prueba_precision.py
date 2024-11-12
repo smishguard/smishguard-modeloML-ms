@@ -4,14 +4,14 @@ from tqdm import tqdm
 
 def load_data(file_path):
     # Cargar solo las primeras 200 filas del archivo CSV
-    df = pd.read_csv(file_path, encoding='ISO-8859-1', nrows=200)
+    df = pd.read_csv(file_path, encoding='ISO-8859-1', nrows=100)
     # Seleccionar las columnas 'LABEL' y 'TEXT' para la clase y el mensaje
     df = df[['LABEL', 'TEXT']]
     df.columns = ['class', 'text']  # Renombrar las columnas para simplificar
     return df
 
 def send_to_service(text):
-    url = "http://127.0.0.1:5000/predict"  # Cambia la URL si es necesario
+    url = "https://smishguard-modeloml-ms.onrender.com/predict"  # Cambia la URL si es necesario
     payload = {"text": text}
     try:
         response = requests.post(url, json=payload)
