@@ -115,10 +115,8 @@ def evaluate_model(data):
 ```
 ![Resultado de Pruebas API](Test/PresicionEnRender.jpg)
 ### Resultado de la evaluación
-El modelo logró una precisión del X% en la detección de mensajes de spam y no spam.
+El modelo logró una precisión del 80% en la detección de mensajes de spam y no spam.
 
-## Contribuciones
-Se aceptan contribuciones al proyecto. Por favor, abre un issue para discutir los cambios que te gustaría realizar.
 
 ## Licencia
 Este proyecto está licenciado bajo la MIT License.
