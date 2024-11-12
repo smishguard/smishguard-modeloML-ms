@@ -113,7 +113,7 @@ def evaluate_model(data):
     accuracy = (correct_predictions / total_messages) * 100
     print(f"\nPrecisión del modelo: {accuracy:.2f}%")
 ```
-![Resultado de Pruebas API](Test/PresicionEnRenderjpg)
+![Resultado de Pruebas API](Test/PresicionEnRender.jpg)
 ### Resultado de la evaluación
 El modelo logró una precisión del X% en la detección de mensajes de spam y no spam.
 
